@@ -17,5 +17,5 @@ This backend handles the core functionality of the application, managing notices
 - Notifications and assignment tracking.
 
 ## 📅 Daily Updates
-Check the **commit history** to stay informed about ongoing enhancements and progress.  
+Check the ***commit history*** to stay informed about ongoing enhancements and progress.  
 Stay tuned for exciting new features! 🎉
