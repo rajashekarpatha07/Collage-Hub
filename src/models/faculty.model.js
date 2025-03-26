@@ -59,7 +59,7 @@ facultySchema.pre('save', async function(next){
 });
 
 facultySchema.methods.isPassowordMatch = async function(password){
-    return await bycrypt.compare(password, this.password);
+    return await bcrypt.compare(password, this.password);
 }
 
 facultySchema.methods.generateAccessToken = async function(){

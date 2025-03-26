@@ -57,7 +57,7 @@ const studentLogin = asyncHandler(async (req, res) => {
     
     const student = await Student.findOne({ rollnumber })
     if(!student) {
-        throw new ApiError(400, 'The user Doesn\'t exist register first');
+        throw new ApiError(400, 'The student Doesn\'t exist register first');
     }
 
     const isPassowrdMatch = await student.isPassowordMatch(password);
