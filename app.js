@@ -1,7 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import studentRoutes from "./src/routes/student.route.js"; // Correct relative path
+import studentRoutes from "./src/routes/student.route.js";
+import facultyRoutes from "./src/routes/faculty.route.js";
 
 const app = express();
 
@@ -20,6 +21,6 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 app.use("/api/v1/students", studentRoutes);
-// app.use("/api/v1/faculty", facultyRoutes);
+app.use("/api/v1/faculty", facultyRoutes);   
 
 export default app;
