@@ -80,4 +80,26 @@ const studentLogin = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, { refreshToken, Loggedstudent }, 'Stundent Logged in successfully'));
 });
 
-export { registerStudent, studentLogin };
+const stundetLogout = asyncHandler(async (req, res) => {
+    await Student.findOneAndUpdate(
+        req.student._id,
+        {
+            $set: { refreshtoken: null}
+        },
+        {
+            new: true
+        }
+    )
+    const optiones = {
+        httpOnly: true,
+        secure: true
+    }
+    return res
+        .status(200)
+        .clearCookie('refreshToken', optiones)
+        .clearCookie('accessToken', optiones)
+        .json(new ApiResponse(200, {}, 'Student Logged out successfully'));
+
+});
+
+export { registerStudent, studentLogin, stundetLogout};
