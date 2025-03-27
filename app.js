@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import studentRoutes from "./src/routes/student.route.js";
 import facultyRoutes from "./src/routes/faculty.route.js";
+import notesRoutes from "./src/routes/notes.route.js";
 
 const app = express();
 
@@ -22,5 +23,6 @@ app.use(cookieParser());
 
 app.use("/api/v1/students", studentRoutes);
 app.use("/api/v1/faculty", facultyRoutes);   
+app.use("/api/v1/notes", notesRoutes);
 
 export default app;

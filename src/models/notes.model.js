@@ -1,3 +1,5 @@
+import mongoose, {Schema} from "mongoose";
+import { type } from "os";
 const notesSchema = new Schema({
     subject: {
       type: String,
@@ -7,7 +9,7 @@ const notesSchema = new Schema({
     branch: {
       type: String,
       required: true,
-      enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'OTHER']
+      enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'CSC', 'OTHER']
     },
     sem: {
       type: Number,
@@ -28,9 +30,8 @@ const notesSchema = new Schema({
       }
     },
     uploadedBy: {
-      type: Schema.Types.ObjectId,
-      ref: 'Faculty',
-      required: true
+      type: String,
+      required: true,
     },
     title: {
       type: String,
