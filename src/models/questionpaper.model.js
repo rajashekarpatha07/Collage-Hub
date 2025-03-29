@@ -1,3 +1,5 @@
+import mongoose, { Schema } from "mongoose";
+
 const questionPaperSchema = new Schema({
     subject: {
       type: String,
@@ -5,22 +7,17 @@ const questionPaperSchema = new Schema({
       trim: true
     },
     year: {
-      type: Number,
+      type: String,
       required: true,
-      validate: {
-        validator: function(v) {
-          return v >= 2000 && v <= new Date().getFullYear();
-        },
-        message: props => `${props.value} is not a valid year!`
-      }
+      trim: true,
     },
     branch: {
       type: String,
       required: true,
-      enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'OTHER']
+      enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'OTHER', 'CSC']
     },
     sem: {
-      type: Number,
+      type: String,
       required: true,
       min: 1,
       max: 8
@@ -34,9 +31,9 @@ const questionPaperSchema = new Schema({
       }
     },
     uploadedBy: {
-      type: Schema.Types.ObjectId,
-      ref: 'Faculty',
-      required: true
+      type: String,
+      required: true,
+      trim: true
     }
   }, {
     timestamps: true

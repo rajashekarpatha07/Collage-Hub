@@ -30,12 +30,12 @@ const addNote = asyncHandler(async (req, res) => {
         const notespath = req.files?.notes[0]?.path;
 
         if (!notespath) {
-            return new ApiError.badRequest(res, "File not provided");
+            return new ApiError(res, "File not provided");
         }
 
         const notesfileurl = await UploadOnCloudinary(notespath);
         if (!notesfileurl) {
-            return new ApiError.badRequest(res, "File upload failed");
+            return new ApiError(res, "File upload failed");
         }
 
         // Create the note after successful upload

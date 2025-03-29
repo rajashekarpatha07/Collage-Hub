@@ -33,9 +33,12 @@ const upload = multer({
             cb(new Error("Only images and PDFs are allowed!"));
         }
     },
-}).fields([{ name: "notes", maxCount: 1 }]); // ✅ Corrected here
+}).fields([
+    { name: "notes", maxCount: 1 },
+    { name: "questionpaper", maxCount: 1 }
+]);
 
-// 📝 Compress Image Before Saving
+
 const compressAndSaveImage = async (localFilePath) => {
     const compressedFilePath = localFilePath.replace(path.extname(localFilePath), "-compressed.jpg");
     try {
@@ -53,7 +56,7 @@ const compressAndSaveImage = async (localFilePath) => {
     }
 };
 
-// 📚 Compress PDF Before Saving
+// Compress PDF Before Saving
 const compressAndSavePDF = (localFilePath) => {
     const compressedFilePath = localFilePath.replace(".pdf", "-compressed.pdf");
     return new Promise((resolve, reject) => {
@@ -76,7 +79,7 @@ const compressAndSavePDF = (localFilePath) => {
     });
 };
 
-// 🎯 Handle Compression Based on File Type
+//Handle Compression Based on File Type
 const compressAndSaveFile = async (localFilePath, mimetype) => {
     if (mimetype.startsWith("image/")) {
         return await compressAndSaveImage(localFilePath);
