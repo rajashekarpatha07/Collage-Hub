@@ -1,3 +1,4 @@
+import mongoose, {Schema} from 'mongoose';
 const noticeSchema = new Schema({
     title: {
       type: String,
@@ -18,34 +19,28 @@ const noticeSchema = new Schema({
     branch: {
       type: String,
       required: false, // Making this optional if notice is for all branches
-      enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'OTHER', 'ALL']
+      enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'OTHER', 'ALL','CSC']
     },
     targetType: {
       type: String,
       required: true,
       enum: ['ALL', 'BRANCH', 'SEMESTER', 'SPECIFIC']
     },
-    year: {
+    batchyear: {
       type: Number,
       required: true,
-      default: function() {
-        return new Date().getFullYear();
-      }
+      enum: [23, 24, 25, 26]
     },
     postedBy: {
-      type: Schema.Types.ObjectId,
-      ref: 'Faculty',
-      required: true
-    },
-    isImportant: {
-      type: Boolean,
-      default: false
+      type: String,
+      required: true,
+      trim: true
     },
     expiresAt: {
       type: Date,
       default: function() {
         const date = new Date();
-        date.setMonth(date.getMonth() + 1); // Default expiry: 1 month
+        date.setMonth(date.getMonth() + 8);
         return date;
       }
     }
