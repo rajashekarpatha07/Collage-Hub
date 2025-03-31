@@ -21,11 +21,7 @@ const noticeSchema = new Schema({
       required: false, // Making this optional if notice is for all branches
       enum: ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL', 'IT', 'OTHER', 'ALL','CSC']
     },
-    targetType: {
-      type: String,
-      required: true,
-      enum: ['ALL', 'BRANCH', 'SEMESTER', 'SPECIFIC']
-    },
+    
     batchyear: {
       type: Number,
       required: true,

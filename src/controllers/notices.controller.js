@@ -1,13 +1,13 @@
 import { ApiError } from '../utils/ApiError.js';
 import { Notice } from '../models/notices.model.js';
-import { UploadOnCloudinary, DeleteFromCloudinary } from '../utils/Cloudinary.js';
+// import { UploadOnCloudinary, DeleteFromCloudinary } from '../utils/Cloudinary.js';
 import { asyncHandler } from '../utils/AsyncHanders.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 
 const addNotice = asyncHandler(async (req, res) => {
     try {
-        const { title, description, sem, branch, targetType, batchyear} = req.body;
-        if ([title, description, sem, branch, targetType, batchyear].some((field) => String(field || '').trim() === '')) {
+        const { title, description, branch,  batchyear} = req.body;
+        if ([title, description, branch,  batchyear].some((field) => String(field || '').trim() === '')) {
             throw new ApiError(400, 'All fields are required');
         }
         
@@ -15,9 +15,7 @@ const addNotice = asyncHandler(async (req, res) => {
         const notice = await Notice.create({
             title,
             description,
-            sem,
             branch,
-            targetType,
             batchyear,
             postedBy: req.faculty.name,
             
